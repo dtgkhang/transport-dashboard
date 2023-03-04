@@ -61,7 +61,7 @@ const CompanyVehicle = () => {
 
             if (response.data) {
                 message.success(response.data.message);
-                window.location.reload(false);
+                // window.location.reload(false);
 
 
             } else {
@@ -136,7 +136,7 @@ const CompanyVehicle = () => {
             dataIndex: 'action',
             key: 'action',
             render: (_, vehicleId) =>
-                    <Popconfirm title="Sure to delete?" onConfirm={() => handleActive(vehicleId)}>
+                    <Popconfirm title="Sure to change?" onConfirm={() => handleActive(vehicleId)}>
                         <a>Update status</a>
                     </Popconfirm>
 
@@ -146,7 +146,7 @@ const CompanyVehicle = () => {
         useEffect(() => {
         getVehicles();
 
-    },[]);
+    },[vehicles]);
 
         const [isModalOpen, setIsModalOpen] = useState(false);
 

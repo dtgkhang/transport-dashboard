@@ -18,9 +18,8 @@ function TripForm({isModalOpen,handleOk,handleCancel}) {
     const navigate =useNavigate();
     const handleSubmit = async (values) => {
         try {            console.log(values)
-            const fvalues = JSON.stringify(values.ima2)
-            console.log(fvalues)
-            console.log(values.ima2)
+            // const fvalues = JSON.stringify(values.ima2)
+
 
             const response = await companyApi.createTrip(values)
             console.log(response)
@@ -28,11 +27,6 @@ function TripForm({isModalOpen,handleOk,handleCancel}) {
                 message.success(response.data.message)
                 window.location.reload(false);
                 navigate("/company/vehicle")
-                // if(localStorage.getItem("role")=="COM")
-                //   navigate("/agency")
-                // else if(localStorage.getItem("role")=="US"){
-                //   navigate("/home")
-                // }
             } else {
                 message.error("Add Fail!")
                 console.log(response)
@@ -109,28 +103,27 @@ function TripForm({isModalOpen,handleOk,handleCancel}) {
                 <Form.Item label="price" name="price">
                     <InputNumber />
                 </Form.Item>
-                <Form.Item label="Driver" name="image">
+                <Form.Item label="img" name="image">
                     <Input />
                 </Form.Item>
                 <Form.Item label="City Arrival" name="cityArrival">
                     <Select>
-                        <Select.Option value="SG">Sài Gòn</Select.Option>
-                        <Select.Option value="vungtau">Vũng Tàu</Select.Option>
-                        <Select.Option value="Đl">Đà Lạt</Select.Option>
-                        <Select.Option value="dongthap">Đồng Tháp</Select.Option>
+                        <Select.Option value="Sài Gòn">Sài Gòn</Select.Option>
+                        <Select.Option value="Huế">Huế</Select.Option>
+                        <Select.Option value="Nha Trang">Nha Trang</Select.Option>
+                        <Select.Option value="Đà Lạt">Đà Lạt</Select.Option>
 
                     </Select>
                 </Form.Item>
                 <Form.Item label="City Departure" name="cityDeparture">
                     <Select>
-                        <Select.Option value="SG">Sài Gòn</Select.Option>
-                        <Select.Option value="vungtau">Vũng Tàu</Select.Option>
-                        <Select.Option value="Đl">Đà Lạt</Select.Option>
-                        <Select.Option value="dongthap">Đồng Tháp</Select.Option>          </Select>
+                        <Select.Option value="Sài Gòn">Sài Gòn</Select.Option>
+                        <Select.Option value="Huế">Huế</Select.Option>
+                        <Select.Option value="Nha Trang">Nha Trang</Select.Option>
+                        <Select.Option value="Đà Lạt">Đà Lạt</Select.Option>
+                    </Select>
                 </Form.Item>
                 <Form.Item name="ima2" label="Trip Image"
-                           // valuePropName="fileList"
-
                 >
                     <Upload action="/upload.do" listType="picture-card">
                         <div>

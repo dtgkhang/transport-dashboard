@@ -13,7 +13,7 @@ function VehicleForm({isModalOpen,handleOk,handleCancel}) {
             console.log(values)
             if (response.data) {
                 message.success(response.data.message)
-                window.location.reload(false);
+                // window.location.reload(false);
 
                 navigate("/company/vehicle")
 
