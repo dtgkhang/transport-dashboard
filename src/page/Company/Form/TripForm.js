@@ -9,6 +9,7 @@ import dayjs from 'dayjs'
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 
 function TripForm({isModalOpen,handleOk,handleCancel}) {
+    const {user}= useSelector(state => state.user);
 
     dayjs.extend(customParseFormat);
     const { RangePicker } = DatePicker;
@@ -17,13 +18,15 @@ function TripForm({isModalOpen,handleOk,handleCancel}) {
     const navigate =useNavigate();
     const handleSubmit = async (values) => {
         try {            console.log(values)
-            const fvalues = JSON.stringify(values)
+            const fvalues = JSON.stringify(values.ima2)
             console.log(fvalues)
+            console.log(values.ima2)
 
             const response = await companyApi.createTrip(values)
             console.log(response)
             if (response.data) {
                 message.success(response.data.message)
+                window.location.reload(false);
                 navigate("/company/vehicle")
                 // if(localStorage.getItem("role")=="COM")
                 //   navigate("/agency")
@@ -44,7 +47,7 @@ function TripForm({isModalOpen,handleOk,handleCancel}) {
     const getVehicles = async () => {
         try {
 
-            const response = await companyApi.getVehicleByCompanyId(4);
+            const response = await companyApi.getVehicleByCompanyId(user.companyId);
 
             console.log(response.data.list_vehicle);
 
@@ -92,8 +95,10 @@ function TripForm({isModalOpen,handleOk,handleCancel}) {
                         format="DD-MM-YYYY HH:mm"
                         showTime/>
                 </Form.Item>
-                <Form.Item label="companyId" name="companyId">
-                    <InputNumber />
+                <Form.Item label="CompanyID" name="companyId"  initialValues={user.companyId}>
+                    <Radio.Group>
+                        <Radio value={user.companyId}> This company </Radio>
+                    </Radio.Group>
                 </Form.Item>
                 <Form.Item label="description" name="description">
                     <Input />
@@ -123,7 +128,10 @@ function TripForm({isModalOpen,handleOk,handleCancel}) {
                         <Select.Option value="Đl">Đà Lạt</Select.Option>
                         <Select.Option value="dongthap">Đồng Tháp</Select.Option>          </Select>
                 </Form.Item>
-                <Form.Item label="Trip Image" valuePropName="fileList">
+                <Form.Item name="ima2" label="Trip Image"
+                           // valuePropName="fileList"
+
+                >
                     <Upload action="/upload.do" listType="picture-card">
                         <div>
                             <PlusOutlined />

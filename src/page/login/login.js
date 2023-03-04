@@ -20,20 +20,19 @@ function Login() {
             dispatch(ShowLoading())
             const response = await axios.post("https://transport-springboot.herokuapp.com/api/auth/login",values)
             console.log(values)
+
             dispatch(HideLoading())
 
             if(response.data){
                 message.success(response.data.message)
-                // localStorage.setItem("token",response.data.token);
+                localStorage.setItem("token",response.data.data.token)
                 localStorage.setItem("userID",JSON.stringify(response.data.data.id))
+                // localStorage.setItem("companyId",JSON.stringify(response.data.data.companyId))
+
                 console.log(response.data.data.id)
                 response.data.data.role=="ADMIN" ?  navigate("/admin") : navigate("/company")
+                window.location.reload(false);
 
-                // if(localStorage.getItem("role")=="COM")
-                //   navigate("/agency")
-                // else if(localStorage.getItem("role")=="US"){
-                //   navigate("/home")
-                // }
             }else{
                 message.error("Login Fail!")
                 console.log(response)
@@ -46,7 +45,7 @@ function Login() {
 
     };
     return (
-        <div  footer={null} className="card d-flex justify-content-center align-items-center" width={600} title="Login" >
+        <div  footer={null} className="h-screen d-flex justify-content-center align-items-center mt-5" width={600} title="Login" >
 
             <div className="card w-500  p-5">
                 <Form

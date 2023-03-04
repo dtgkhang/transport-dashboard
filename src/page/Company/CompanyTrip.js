@@ -10,12 +10,13 @@ import TripForm from "./Form/TripForm";
 
 const CompanyTrip = () => {
     const [trips, setTrips] = useState([]);
+    const {user}= useSelector(state => state.user);
 
     const dispatch = useDispatch();
 
     const getVehicles = async () => {
         try {
-            const response = await companyApi.getTripByCompanyId(4);
+            const response = await companyApi.getTripByCompanyId(user.companyId);
 
             console.log(response.data.list_trip_Company);
 
@@ -70,6 +71,11 @@ const CompanyTrip = () => {
             message.error(err.message);
         }
     };
+     const getFullDate = (date) => {
+        const dateAndTime = date.split('T');
+
+        return dateAndTime[0].split('-').reverse().join('-');
+    };
     const columns = [
         {
             title: 'Trip ID',
@@ -84,7 +90,7 @@ const CompanyTrip = () => {
             dataIndex: 'employeeName',
             key: 'employeeName',
             filteredValue: [searchedText],
-            // onFilter: (value, record) => record.licensePlates.includes(value),
+            onFilter: (value, record) => record.employeeName.includes(value),
 
         },        {
             title: 'status',
@@ -124,6 +130,7 @@ const CompanyTrip = () => {
             title: 'time Return',
             dataIndex: 'timeReturn',
             key: 'timeReturn',
+            render: ((date) => getFullDate(date)),
         }, {
             title: 'seat Quantity',
             dataIndex: 'seatQuantity',

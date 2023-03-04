@@ -13,7 +13,10 @@ function VehicleForm({isModalOpen,handleOk,handleCancel}) {
             console.log(values)
             if (response.data) {
                 message.success(response.data.message)
+                window.location.reload(false);
+
                 navigate("/company/vehicle")
+
                 // if(localStorage.getItem("role")=="COM")
                 //   navigate("/agency")
                 // else if(localStorage.getItem("role")=="US"){

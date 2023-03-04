@@ -17,9 +17,6 @@ const companyApi ={
     },updateActive(id){
         const  url=`/api/vehicle/company/${id}`
         return axiosClient.patch(url)
-    },updateInactive(id){
-        const  url =`/api/vehicle/${id}`
-        return axiosClient.delete(url)
     },getTripByCompanyId(id){
         const url = `/api/trip/company/${id}`
         return axiosClient.get(url);

@@ -14,6 +14,7 @@ function VehicleForm({isModalOpen,handleOk,handleCancel}) {
             console.log(JSON.stringify(values))
             if (response.data) {
                 message.success(response.data.message)
+                window.location.reload(false);
 
             } else {
                 message.error("Add Fail!")

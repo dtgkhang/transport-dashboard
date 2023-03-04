@@ -15,7 +15,6 @@ function ProtectedRoute({children}) {
         try{
             dispatch(ShowLoading());
             const response = await userApi.getUser(localStorage.getItem("userID"))
-
             console.log(response)
             dispatch(HideLoading());
             if(response.data.data.id){
@@ -26,13 +25,13 @@ function ProtectedRoute({children}) {
 
                 console.log(response)
             }else{
-                localStorage.clear();
+                // localStorage.clear();
                 navigate('/login')
 
             }
         }catch(error){
 
-            localStorage.clear();
+            // localStorage.clear();
             navigate('/login')
         }
     }

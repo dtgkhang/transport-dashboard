@@ -61,6 +61,8 @@ const CompanyVehicle = () => {
 
             if (response.data) {
                 message.success(response.data.message);
+                window.location.reload(false);
+
 
             } else {
                 message.error(response.data.message);
@@ -143,6 +145,7 @@ const CompanyVehicle = () => {
 
         useEffect(() => {
         getVehicles();
+
     },[]);
 
         const [isModalOpen, setIsModalOpen] = useState(false);

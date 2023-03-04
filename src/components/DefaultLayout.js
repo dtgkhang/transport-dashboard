@@ -20,7 +20,7 @@ const CompanyItems = [
     getItem('Vehicle', '/company/vehicle', <DesktopOutlined />),
     getItem('Trip', '/company/trip', <UserOutlined />),
     getItem('Booking', '/company/booking', <UserOutlined />),
-    getItem("Log Out",'/',<PoweroffOutlined/>)
+    getItem("Log Out",'/LogOut',<PoweroffOutlined/>)
 
 ];
 const AdminItems = [
@@ -59,7 +59,7 @@ function DefaultLayout ({children}) {
 
 
                 <Menu theme="dark" defaultSelectedKeys={['/company']} onClick={({key})=>{navigate(key)}} mode="inline" items={RenderItems} />
-                <button className="btn btn-danger">Log out</button>
+                {/*<button className="btn btn-danger">Log out</button>*/}
             </Sider>
             <Layout className="site-layout">
                 <Header
@@ -102,7 +102,7 @@ function DefaultLayout ({children}) {
                         textAlign: 'center',
                     }}
                 >
-                    Ant Design ©2023 Created by Ant UED
+                    FPT ©2023 Created by khangdtg
                 </Footer>
             </Layout>
         </Layout>
