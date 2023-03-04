@@ -47,5 +47,6 @@
       "last 1 safari version"
     ]
   },"engines": {
-  "node": "16.x"
+    "node": "16.x"
+  }
 }
