@@ -20,7 +20,9 @@ const userApi = {
     changePassword(id) {
         const url = `/api/accounts/change/${id}`;
         return axiosClient.patch(url);
-    },
+    },getFeedbackUser(id){
+        
+    }
 
 };
 
