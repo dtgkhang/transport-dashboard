@@ -20,7 +20,6 @@ function Login() {
             dispatch(ShowLoading())
             const response = await axios.post("https://transport-springboot.herokuapp.com/api/auth/login",values)
             console.log(values)
-
             dispatch(HideLoading())
 
             if(response.data){
@@ -28,9 +27,8 @@ function Login() {
                 localStorage.setItem("token",response.data.data.token)
                 localStorage.setItem("userID",JSON.stringify(response.data.data.id))
                 // localStorage.setItem("companyId",JSON.stringify(response.data.data.companyId))
-
                 console.log(response.data.data.id)
-                response.data.data.role=="ADMIN" ?  navigate("/admin") : navigate("/company")
+                response.data.data.role=="ADMIN" ?  navigate("/admin/company") : navigate("/company/trip")
                 window.location.reload(false);
 
             }else{

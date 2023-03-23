@@ -14,6 +14,7 @@ import CompanyVehicle from "./page/Company/CompanyVehicle";
 import CompanyBooking from "./page/Company/CompanyBooking";
 import AdminCompany from "./page/Admin/AdminCompany";
 import LogOut from "./components/LogOut";
+import AdminUser from './page/Admin/AdminUser';
 
 function App() {
     const {loading} =useSelector(state => state.alerts)
@@ -34,6 +35,7 @@ function App() {
             <Route path="/admin" element={<ProtectedRoute><AdminCompany/></ProtectedRoute>}/>
             {/*<Route path="/admin/trip" element={<ProtectedRoute><Admin/></ProtectedRoute>}/>*/}
             <Route path="/admin/company" element={<ProtectedRoute><AdminCompany/></ProtectedRoute>}/>
+            <Route path="/admin/user" element={<ProtectedRoute><AdminUser/></ProtectedRoute>}/>
 
         </Routes>
       </BrowserRouter>

@@ -118,10 +118,9 @@ const CompanyVehicle = () => {
       ellipsis: true,
     },
     {
-      title: "Total seat",
-      dataIndex: "totalSeat",
-      key: "totalSeat",
-      width: "20%",
+      title: "seat Capacity",
+      dataIndex: "seatCapacity",
+      key: "seatCapacity",
     },
     {
       title: "Status",

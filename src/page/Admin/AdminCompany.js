@@ -55,7 +55,7 @@ const AdminCompany = () => {
     const handleActive = async (record) => {
         try {
             console.log(record)
-            const response = await companyApi.updateActive(record.vehicleId);
+            const response = await adminApi.deleteCompany(record.companyId);
 
             console.log(response.data);
 

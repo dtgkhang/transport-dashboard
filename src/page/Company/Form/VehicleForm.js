@@ -4,16 +4,18 @@ import companyApi from "../../../api/companyApi";
 import {useSelector} from "react-redux";
 import {createRoutesFromChildren, useNavigate} from "react-router-dom";
 
-function VehicleForm({isModalOpen,handleOk,handleCancel}) {
+function VehicleForm({isModalOpen,handleOk,handleCancel,setRefresh}) {
     const {user}= useSelector(state => state.user);
  const navigate =useNavigate();
     const handleSubmit = async (values) => {
         try {
+            values.companyId = user.companyId;
             const response = await companyApi.createVehicle(values)
             console.log(values)
             if (response.data) {
                 message.success(response.data.message)
                 // window.location.reload(false);
+                setRefresh(oldKey => oldKey +1)
 
                 navigate("/company/vehicle")
 
@@ -33,7 +35,7 @@ function VehicleForm({isModalOpen,handleOk,handleCancel}) {
     }
 
         return (
-        <Modal width={600} title="Add Vehicle" footer={null}  open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+        <Modal  width={600} title="Add Vehicle" footer={null}  open={isModalOpen} onOk={handleOk} onCancel={handleCancel} setRefresh={setRefresh}>
             <Form onFinish={handleSubmit}>
                 <Form.Item label="Vehicle type" name="vehicleType">
                     <Radio.Group>
@@ -41,11 +43,11 @@ function VehicleForm({isModalOpen,handleOk,handleCancel}) {
                         <Radio value="LIMOUSINE"> limo - 9 seats</Radio>
                     </Radio.Group>
                 </Form.Item>
-                <Form.Item label="CompanyID" name="companyId"  initialValues={user.companyId}>
+                {/* <Form.Item label="CompanyID" name="companyId"  initialValues={user.companyId}>
                     <Radio.Group>
                         <Radio value={user.companyId}> This company </Radio>
                     </Radio.Group>
-                </Form.Item>
+                </Form.Item> */}
                 <Form.Item label="License" name="licensePlates">
                     <Input />
                 </Form.Item>

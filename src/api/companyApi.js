@@ -26,7 +26,22 @@ const companyApi ={
     },createTrip(data){
         const url = `/api/trip/create`
         return axiosClient.post(url,data);
-    }
+    },getBooked(id){
+        const url = `/api/booking/company/${id}`
+        return axiosClient.get(url);
+    },deleteTrip(id){
+        const url = `/api/trip/delete/${id}`
+        return axiosClient.delete(url);
+    },confirmBooking(id){
+        const url = `/api/booking/cashTicket/${id}`
+        return axiosClient.get(url);
+    },confirmRefund(id){
+        const url = `/api/booking/returnTicket/${id}`
+        return axiosClient.get(url);
+    },updateTrip(id,data){
+        const url = `/api/trip/${id}`
+        return axiosClient.put(url,data);
+    },
 
 };
 
