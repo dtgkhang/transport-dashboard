@@ -35,7 +35,7 @@ const CompanyTrip = () => {
                 message.error(response.data.message);
             }
         } catch (err) {
-            message.error(err.message);
+            // message.error(err.message);
         }
     };
     const [searchedText, setSearchedText] = useState([]);

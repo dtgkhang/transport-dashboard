@@ -36,7 +36,7 @@ const CompanyVehicle = () => {
         message.error(response.data.message);
       }
     } catch (err) {
-      message.error(err.message);
+      message.error("Can not get vehicle or no vehicle");
     }
   };
   const [searchedText, setSearchedText] = useState([]);

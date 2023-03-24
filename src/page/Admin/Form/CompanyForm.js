@@ -1,5 +1,5 @@
 import React from 'react'
-import {InputNumber,message,Input, Button, Radio, Form,Row, Modal} from 'antd'
+import {InputNumber,message,Input, Button, Radio, Form,Row, Modal, DatePicker} from 'antd'
 import companyApi from "../../../api/companyApi";
 import {useSelector} from "react-redux";
 import {createRoutesFromChildren, useNavigate} from "react-router-dom";
@@ -27,7 +27,7 @@ function VehicleForm({isModalOpen,handleOk,handleCancel}) {
     }
 
     return (
-        <Modal width={600} title="Add Vehicle" footer={null}  open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+        <Modal width={600} title="Regis company" footer={null}  open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
             <Form onFinish={handleSubmit}>
 
                 <Form.Item label="avatarImage" name="avatarImage">
@@ -66,15 +66,17 @@ function VehicleForm({isModalOpen,handleOk,handleCancel}) {
                 <Form.Item label="description" name="description">
                     <Input />
                 </Form.Item>
-                <Form.Item label="dateOfBirth" name="dateOfBirth">
-                    <InputNumber />
-                </Form.Item>
-                <Form.Item label="status" name="status">
+                {/* <Form.Item label="dateOfBirth" name="dateOfBirth">
+                <DatePicker
+                         format="DD-MM-YYYY"
+                         showTime/>                
+                </Form.Item> */}
+                {/* <Form.Item label="status" name="status">
                     <Radio.Group>
                         <Radio value="ACTIVE"> Active </Radio>
                         <Radio value="INACTIVE"> Inactive</Radio>
                     </Radio.Group>
-                </Form.Item>
+                </Form.Item> */}
 
                 <Form.Item>
                     <Button type="primary" htmlType="submit" className="login-form-button" >
