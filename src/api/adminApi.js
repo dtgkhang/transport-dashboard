@@ -15,7 +15,14 @@ const adminApi ={
     deleteCompany(id){
         const url = `/api/company${id}`
         return axiosClient.get(url);
+    },createVouncher(data){
+        const url = `/api/voucher`
+        return axiosClient.post(url,data);
+    },getVoucherAdmin(accountId){
+        const url = `/api/voucher/getVoucherByOwner/${accountId}`
+        return axiosClient.get(url);
     }
+
 
 };
 
