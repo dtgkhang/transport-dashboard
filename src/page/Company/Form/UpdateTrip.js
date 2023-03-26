@@ -37,10 +37,11 @@ function UpdateTrip({
   const handleSubmit = async(values) => {
     try {
       console.log(values);
+      values.tripId=  record.tripId
       // const fvalues = JSON.stringify(values.ima2)
       //
     //   values.companyId = user.companyId;
-      const response = await companyApi.updateTrip(user.companyId,values)
+      const response = await companyApi.updateTrip(values)
       setRefresh((oldKey) => oldKey + 1);
       message.success(response.data.message);
 
@@ -91,8 +92,8 @@ function UpdateTrip({
       <Form preserve={false} onFinish={handleSubmit}
       
           initialValues={{
-              ["timeDeparture"]: record.timeDeparture,
-              ["timeArrival"]: record.timeArrival,  
+              // ["timeDeparture"]: record.timeDeparture,
+              // ["timeArrival"]: record.timeArrival,  
               ["description"]: record.description,  
               ["employeeName"]: record.employeeName,  
               ["price"]: record.price,  

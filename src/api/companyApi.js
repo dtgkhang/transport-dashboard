@@ -30,16 +30,16 @@ const companyApi ={
         const url = `/api/booking/company/${id}`
         return axiosClient.get(url);
     },deleteTrip(id){
-        const url = `/api/trip/delete/${id}`
-        return axiosClient.delete(url);
+        const url = `/api/trip/switchStatus/${id}`
+        return axiosClient.get(url);
     },confirmBooking(id){
         const url = `/api/booking/cash/${id}`
         return axiosClient.get(url);
     },confirmRefund(id){
         const url = `/api/booking/returnTicket/${id}`
         return axiosClient.get(url);
-    },updateTrip(id,data){
-        const url = `/api/trip/${id}`
+    },updateTrip(data){
+        const url = `/api/trip/update`
         return axiosClient.put(url,data);
     },cancelBooking(id){
         const url = `/api/booking/CancelBooking/${id}`

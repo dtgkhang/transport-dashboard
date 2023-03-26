@@ -107,6 +107,11 @@ const CompanyTrip = () => {
                     text: 'ACTIVE',
                     value: 'ACTIVE',
                 },
+                ,
+                {
+                    text: 'UPDATE',
+                    value: 'UPDATE',
+                },
                 {
                     text: 'DOING',
                     value: 'DOING',
@@ -132,16 +137,14 @@ const CompanyTrip = () => {
             key: 'timeArrival',
             render: ((date) => tranfer(date)),
 
-        }, {
-            title: 'time Return',
-            dataIndex: 'timeReturn',
-            key: 'timeReturn',
-            render: ((date) => tranfer(date)),
-        }, {
+        },{
             title: 'seat Quantity',
             dataIndex: 'seatQuantity',
             key: 'seatQuantity',
-        },{
+            render:(_, record) => record.vehicle.seatCapacity+"/"+record.seatQuantity
+
+        },
+        {
             title: 'arrival',
             dataIndex: `arrival`,
             key: 'arrival',
@@ -156,12 +159,14 @@ const CompanyTrip = () => {
             key: 'action',
             render: (_, vehicleId) =>
             <>
-<Popconfirm title="Sure to delete?" onConfirm={() => handleActive(vehicleId)}>
-                    <a>Update status</a>
+            <Popconfirm title="Sure to delete?" onConfirm={() => handleActive(vehicleId)}>
+                   { vehicleId.status === "ACTIVE" ? <a className="btn btn-primary text-white">PAUSE</a> : ""}
+                   { vehicleId.status === "UPDATE" ? <a className="btn btn-primary text-white">ACTIVE</a> : ""}
+
                 </Popconfirm>
 
-            <button className="btn btn-primary" onClick={()=>showModal1(vehicleId)}>
-                Update Trip
+            <button className="btn btn-primary m-1" onClick={()=>showModal1(vehicleId)}>
+                Update
             </button>
             </>
                 
