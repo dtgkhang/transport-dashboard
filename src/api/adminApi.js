@@ -21,9 +21,14 @@ const adminApi ={
     },getVoucherAdmin(accountId){
         const url = `/api/voucher/getVoucherByOwner/${accountId}`
         return axiosClient.get(url);
+    },inactiveVoucher(id){
+        const url = `/api/voucher/${id}`
+        return axiosClient.delete(url);
+    },updateVoucher(data){
+        const url = `/api/voucher/update`
+        return axiosClient.put(url,data)
     }
-
-
+    
 };
 
 export default adminApi;

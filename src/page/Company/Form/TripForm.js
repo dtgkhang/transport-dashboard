@@ -5,8 +5,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import companyApi from "../../../api/companyApi";
 import {HideLoading, ShowLoading} from "../../../redux/alertsSlice";
-import dayjs from 'dayjs'
-import customParseFormat from 'dayjs/plugin/customParseFormat';
+// import dayjs from 'dayjs'
+// import customParseFormat from 'dayjs/plugin/customParseFormat';
 
 import { storage } from "../../../components/firebase";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
@@ -38,7 +38,7 @@ function TripForm({isModalOpen,handleOk,handleCancel,setRefresh,tripLenght}) {
     //
     const {user}= useSelector(state => state.user);
 
-    dayjs.extend(customParseFormat);
+    // dayjs.extend(customParseFormat);
     const { RangePicker } = DatePicker;
     
     const dispatch = useDispatch();

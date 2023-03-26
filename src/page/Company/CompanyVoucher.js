@@ -17,7 +17,7 @@ import { useSelector } from "react-redux";
 
 
 
-function AdminVouncher() {
+function CompanyVoucher() {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modaldata, setmodaldata] = useState({});
@@ -357,4 +357,4 @@ destroyOnClose={true}      width={600}
   );
 }
 
-export default AdminVouncher;
+export default CompanyVoucher;

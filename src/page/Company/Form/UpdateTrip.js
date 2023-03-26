@@ -17,8 +17,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import companyApi from "../../../api/companyApi";
 import { HideLoading, ShowLoading } from "../../../redux/alertsSlice";
-import dayjs from "dayjs";
-import customParseFormat from "dayjs/plugin/customParseFormat";
 
 function UpdateTrip({
   isModalOpen,
@@ -29,9 +27,6 @@ function UpdateTrip({
 }) {
   //
   const { user } = useSelector((state) => state.user);
-
-  dayjs.extend(customParseFormat);
-  const { RangePicker } = DatePicker;
 
   const dispatch = useDispatch();
   const { company } = useSelector((state) => state.company);
@@ -84,7 +79,7 @@ function UpdateTrip({
   }, []);
   return (
     <Modal
-      destroyOnClose
+      destroyOnClose={true}  
       width={600}
       title="Update Trip"
       footer={null}
@@ -93,7 +88,17 @@ function UpdateTrip({
       onCancel={handleCancel}
       
     >
-      <Form onFinish={handleSubmit}>
+      <Form preserve={false} onFinish={handleSubmit}
+      
+          initialValues={{
+              ["timeDeparture"]: record.timeDeparture,
+              ["timeArrival"]: record.timeArrival,  
+              ["description"]: record.description,  
+              ["employeeName"]: record.employeeName,  
+              ["price"]: record.price,  
+
+            }}
+      >
      
         <Form.Item label="Time Departure" name="timeDeparture">
           <DatePicker format="DD-MM-YYYY HH:mm" showTime />
@@ -107,13 +112,13 @@ function UpdateTrip({
                     </Radio.Group>
                 </Form.Item> */}
         <Form.Item label="description" name="description">
-          <Input defaultValue={record.description}/>
+          <Input />
         </Form.Item>
         <Form.Item label="Driver" name="employeeName">
-          <Input defaultValue={record.employeeName} />
+          <Input  />
         </Form.Item>
         <Form.Item label="price" name="price">
-          <InputNumber defaultValue={record.price}/>
+          <InputNumber />
         </Form.Item>
 
         <Form.Item>
