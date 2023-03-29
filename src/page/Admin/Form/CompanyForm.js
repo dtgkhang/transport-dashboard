@@ -12,7 +12,7 @@ function VehicleForm({isModalOpen,handleOk,handleCancel}) {
         try {
             const response = await adminApi.createCompany(values)
             console.log(JSON.stringify(values))
-            if (response.data) {
+            if (response) {
                 message.success(response.data.message)
                 // window.location.reload(false);
 
@@ -21,8 +21,8 @@ function VehicleForm({isModalOpen,handleOk,handleCancel}) {
                 console.log(response)
             }
         } catch (err) {
-            message.error(err.message)
-            console.log(JSON.stringify(values))
+            message.error(err.response.data.message[0])
+            console.log(err)
         }
     }
 

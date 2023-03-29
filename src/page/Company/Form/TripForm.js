@@ -125,7 +125,12 @@ dispatch(ShowLoading())
     return (
         <Modal  width={600} title="Add Trip" footer={null}  open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
             <Form onFinish={handleSubmit}>
-                <Form.Item label="Vehicles" name="vehicleId">
+                <Form.Item label="Vehicles" name="vehicleId"  rules={[
+                        {
+                          required: true,
+                          message: 'Please select!',
+                        },
+                      ]}>
 
                     <Select
                     >
@@ -140,35 +145,72 @@ dispatch(ShowLoading())
                     </Select>
                 </Form.Item>
 
-                <Form.Item label="Time Departure" name="timeDeparture">
+                <Form.Item label="Time Departure" name="timeDeparture"   rules={[
+                        {
+                          required: true,
+                          message: 'Please input your timeDeparture!',
+                        },
+                      ]}>
                     <DatePicker
 
                         format="DD-MM-YYYY HH:mm"
                         showTime/>
                 </Form.Item>
-                <Form.Item label="Time Arrival" name="timeArrival">
+                <Form.Item label="Time Arrival" name="timeArrival"   rules={[
+                        {
+                          required: true,
+                          message: 'Please input your timeArrival!',
+                        },
+                      ]}>
                     <DatePicker
                          format="DD-MM-YYYY HH:mm"
                          showTime/>
                 </Form.Item>
-                {/* <Form.Item label="CompanyID" name="companyId"  initialValues={user.companyId}>
+                <Form.Item label="Allow Pay later ?" name="companyId"  initialValues={user.companyId}   rules={[
+                        {
+                          required: true,
+                          message: 'Please select!',
+                        },
+                      ]}>
                     <Radio.Group>
-                        <Radio value={user.companyId}> This company </Radio>
+                        <Radio value={true}> Yes </Radio>
+                        <Radio value={false}> No </Radio>
+
                     </Radio.Group>
-                </Form.Item> */}
-                <Form.Item label="description" name="description">
+                </Form.Item>
+                <Form.Item label="description" name="description"   rules={[
+                        {
+                          required: true,
+                          message: 'Please input description!',
+                        },
+                      ]}>
                     <Input />
                 </Form.Item>
-                <Form.Item label="Driver" name="employeeName">
+                <Form.Item label="Driver" name="employeeName"   rules={[
+                        {
+                          required: true,
+                          message: 'Please input employeeName!',
+                        },
+                      ]}>
                     <Input />
                 </Form.Item>
-                <Form.Item label="price" name="price">
+                <Form.Item label="price" name="price"   rules={[
+                        {
+                          required: true,
+                          message: 'Please input price!',
+                        },
+                      ]}>
                     <InputNumber />
                 </Form.Item>
                 {/* <Form.Item label="img" name="image">
                     <Input />
                 </Form.Item> */}
-                           <Form.Item label="City Departure" name="cityDeparture">
+                           <Form.Item label="City Departure" name="cityDeparture"  rules={[
+                        {
+                          required: true,
+                          message: 'Please input cityDeparture!',
+                        },
+                      ]}>
                     <Select>
                         <Select.Option value="Sài Gòn">Sài Gòn</Select.Option>
                         <Select.Option value="Huế">Huế</Select.Option>
@@ -176,7 +218,12 @@ dispatch(ShowLoading())
                         <Select.Option value="Đà Lạt">Đà Lạt</Select.Option>
                     </Select>
                 </Form.Item>
-                <Form.Item label="City Arrival" name="cityArrival">
+                <Form.Item label="City Arrival" name="cityArrival"   rules={[
+                        {
+                          required: true,
+                          message: 'Please input cityArrival!',
+                        },
+                      ]}>
                     <Select>
                         <Select.Option value="Sài Gòn">Sài Gòn</Select.Option>
                         <Select.Option value="Huế">Huế</Select.Option>
@@ -186,7 +233,7 @@ dispatch(ShowLoading())
                     </Select>
                 </Form.Item>
      
-                <Form.Item label="Trip Image"
+                <Form.Item label="Trip Image" 
                 >
                     {/* <Upload  onChange={handleImageChange}>
                         <div>
@@ -197,7 +244,6 @@ dispatch(ShowLoading())
                           <input type="file" onChange={handleImageChange} />
 
                 </Form.Item>
-                <Form.Item name="image"></Form.Item>
                 <Form.Item>
                     <Button  type="primary" htmlType="submit" className="login-form-button" >
                         Add

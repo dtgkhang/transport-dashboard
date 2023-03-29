@@ -15,26 +15,20 @@ import {
 import adminApi from "../../api/adminApi";
 import { useSelector } from "react-redux";
 
-
-
 function CompanyVoucher() {
-
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modaldata, setmodaldata] = useState({});
 
-  const showModal =  (record) => {
-
+  const showModal = (record) => {
     setmodaldata(record);
     setIsModalOpen(true);
   };
-  
+
   const handleOk = () => {
     setIsModalOpen(false);
     setmodaldata({});
-
-  
   };
-  
+
   const handleCancel = () => {
     setmodaldata({});
 
@@ -63,13 +57,13 @@ function CompanyVoucher() {
         message.error(response.data.message);
       }
     } catch (err) {
-      message.error(err.message);
+      message.error(err.response.data.message);
     }
   };
   const handleUpdate = async (record) => {
     try {
       console.log(record);
-      record.voucherId = modaldata.id
+      record.voucherId = modaldata.id;
       const response = await adminApi.updateVoucher(record);
 
       console.log(response.data);
@@ -82,7 +76,7 @@ function CompanyVoucher() {
         message.error(response.data.message);
       }
     } catch (err) {
-      message.error(err.message);
+      message.error(err.response.data.message);
     }
   };
   const getVouchers = async () => {
@@ -116,7 +110,7 @@ function CompanyVoucher() {
         console.log(response);
       }
     } catch (err) {
-      message.error(err.message);
+      message.error(err.response.data.message);
       console.log(JSON.stringify(values));
     }
   };
@@ -208,15 +202,22 @@ function CompanyVoucher() {
             title="Sure to delete?"
             onConfirm={() => handleActive(record)}
           >
-           {record.status === "ACTIVE" ? <a className="btn btn-danger text-white">INACTIVE</a>
-            :<a className="btn btn-success text-white">ACTIVE</a> }
+            {record.status === "ACTIVE" ? (
+              <a className="btn btn-danger text-white">INACTIVE</a>
+            ) : (
+              <a className="btn btn-success text-white">ACTIVE</a>
+            )}
           </Popconfirm>
 
-          <button  className="btn btn-primary m-1" onClick={()=>{showModal(record);
-          console.log("record",record)
-          }}>
-          Update
-      </button>
+          <button
+            className="btn btn-primary m-1"
+            onClick={() => {
+              showModal(record);
+              console.log("record", record);
+            }}
+          >
+            Update
+          </button>
         </>
       ),
     },
@@ -242,11 +243,23 @@ function CompanyVoucher() {
           </div>
           {/* form-title-wrap */}
           <div className="form-content contact-form-action">
-            <Form name="create" preserve={false}  onFinish={handleSubmit} form={form} className="row" >
+            <Form
+              name="create"
+              preserve={false}
+              onFinish={handleSubmit}
+              form={form}
+              className="row"
+            >
               <Form.Item
                 label="Vouncher Code"
                 name="voucherCode"
                 className="col-lg-12 responsive-column"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input code!",
+                  },
+                ]}
               >
                 <Input />
               </Form.Item>
@@ -254,6 +267,12 @@ function CompanyVoucher() {
                 label="quantity"
                 name="quantity"
                 className="col-lg-6 responsive-column"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input quantity!",
+                  },
+                ]}
               >
                 <InputNumber />
               </Form.Item>
@@ -261,6 +280,12 @@ function CompanyVoucher() {
                 label="discountValue"
                 name="discountValue"
                 className="col-lg-6 responsive-column"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input !",
+                  },
+                ]}
               >
                 <InputNumber />
               </Form.Item>
@@ -268,6 +293,12 @@ function CompanyVoucher() {
                 label="startTime"
                 name="startTime"
                 className="col-lg-6 responsive-column"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input !",
+                  },
+                ]}
               >
                 <DatePicker format="DD-MM-YYYY HH:mm" showTime />
               </Form.Item>
@@ -275,18 +306,26 @@ function CompanyVoucher() {
                 label="expiredTime"
                 name="expiredTime"
                 className="col-lg-6 responsive-column"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input !",
+                  },
+                ]}
               >
                 <DatePicker format="DD-MM-YYYY HH:mm" showTime />
               </Form.Item>
               <div className="submit-box  mx-auto">
                 <div className="btn-box pt-3  mx-auto">
-                  <Button
-                    type="primary"
-                    htmlType="submit"
-                    className="login-form-button  mx-auto"
-                  >
-                    Submit
-                  </Button>{" "}
+                  <Form.Item>
+                    <Button
+                      type="primary"
+                      htmlType="submit"
+                      className="login-form-button  mx-auto"
+                    >
+                      Submit
+                    </Button>
+                  </Form.Item>
                 </div>
               </div>
               {/* end submit-box */}
@@ -296,27 +335,29 @@ function CompanyVoucher() {
         </div>
         {/* end form-box */}
       </div>
-      <Table columns={columns} dataSource={vouchers} />;
-
-      {/* modal update */}
-    { modaldata ? <Modal
-destroyOnClose={true}      width={600}
-      footer={null}
-      open={isModalOpen}
-      onOk={handleOk}
-      onCancel={handleCancel}
-      
-    >
-                <div className="form-content contact-form-action">
-            <Form name="update"  preserve={false} onFinish={handleUpdate} form={form} className="row"
-            initialValues={{
-              ["quantity"]: modaldata.quantity,  
-              // ["expiredTime"]: modaldata.voucherCode,  
-              // ["startTime"]: modaldata.voucherCode,  
-              
-            }}
+      <Table columns={columns} dataSource={vouchers} />;{/* modal update */}
+      {modaldata ? (
+        <Modal
+          destroyOnClose={true}
+          width={600}
+          footer={null}
+          open={isModalOpen}
+          onOk={handleOk}
+          onCancel={handleCancel}
+        >
+          <div className="form-content contact-form-action">
+            <Form
+              name="update"
+              preserve={false}
+              onFinish={handleUpdate}
+              form={form}
+              className="row"
+              initialValues={{
+                ["quantity"]: modaldata.quantity,
+                // ["expiredTime"]: modaldata.voucherCode,
+                // ["startTime"]: modaldata.voucherCode,
+              }}
             >
-        
               <Form.Item
                 label="quantity"
                 name="quantity"
@@ -352,7 +393,8 @@ destroyOnClose={true}      width={600}
               {/* end submit-box */}
             </Form>
           </div>
-    </Modal> : null}
+        </Modal>
+      ) : null}
     </div>
   );
 }

@@ -37,7 +37,12 @@ function VehicleForm({isModalOpen,handleOk,handleCancel,setRefresh}) {
         return (
         <Modal  width={600} title="Add Vehicle" footer={null}  open={isModalOpen} onOk={handleOk} onCancel={handleCancel} setRefresh={setRefresh}>
             <Form onFinish={handleSubmit}>
-                <Form.Item label="Vehicle type" name="vehicleType">
+                <Form.Item label="Vehicle type" name="vehicleType" rules={[
+                        {
+                          required: true,
+                          message: 'Please select',
+                        },
+                      ]} >
                     <Radio.Group>
                         <Radio value="BUS"> Bus - 40 seats </Radio>
                         <Radio value="LIMOUSINE"> limo - 9 seats</Radio>
@@ -48,7 +53,12 @@ function VehicleForm({isModalOpen,handleOk,handleCancel,setRefresh}) {
                         <Radio value={user.companyId}> This company </Radio>
                     </Radio.Group>
                 </Form.Item> */}
-                <Form.Item label="License" name="licensePlates">
+                <Form.Item label="License" name="licensePlates" rules={[
+                        {
+                          required: true,
+                          message: 'Please input licensePlates!',
+                        },
+                      ]}>
                     <Input />
                 </Form.Item>
                 <Form.Item>

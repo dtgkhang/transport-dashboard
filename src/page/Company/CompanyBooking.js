@@ -8,6 +8,8 @@ import {
     Button,
     Input,
     Dropdown,
+    Descriptions,
+    Badge,
   } from "antd";
 import companyApi from "../../api/companyApi";
 function CompanyBooking() {
@@ -867,7 +869,30 @@ useEffect(() => {
               <Button onClick={clearAll}>Clear filters and sorters</Button>
 
             </Space>
-            <Table columns={columns} dataSource={vehicles} onChange={handleChange} />;
+            <Table columns={columns} dataSource={vehicles} onChange={handleChange} 
+            expandable={{
+              expandedRowRender: (record) => (
+                  <Descriptions title="Info" layout="vertical" bordered>
+                  <Descriptions.Item label="Vehicle license">{record.trip.vehicle.licensePlates}</Descriptions.Item>
+                  <Descriptions.Item label="Vehicle Type">{record.trip.vehicle.licensePlates}</Descriptions.Item>
+                  <Descriptions.Item label="Allow Pay Later">{record.trip.allowPaylater ? "Yes" : "No"}</Descriptions.Item>
+                  <Descriptions.Item label="Allow edit before" span={2}>
+                    {record.timeReturn}
+                  </Descriptions.Item>
+                  <Descriptions.Item label="Status" span={3}>
+                    <Badge status="processing" text={record.status} />
+                  </Descriptions.Item>
+                  {/* <Descriptions.Item label="Price">{price(record.price)}</Descriptions.Item> */}
+               
+                  <Descriptions.Item label="Descriptions">
+                    {record.description}
+                  </Descriptions.Item>
+                </Descriptions>
+              ),
+              rowExpandable: (record) => record.name !== 'Not Expandable',
+            }}
+          
+            />;
 
           </div>    )
 }

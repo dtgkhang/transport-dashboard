@@ -1,4 +1,4 @@
-import { Popconfirm,message, Table,Space,Button,Input,Dropdown, Grid } from "antd";
+import { Popconfirm,message, Table,Space,Button,Input,Dropdown, Grid, Descriptions, Badge } from "antd";
 import React, {  useRef, useEffect, useState } from "react";
 import {useDispatch, useSelector} from "react-redux";
 import VehicleForm from "./Form/VehicleForm";
@@ -17,7 +17,12 @@ const CompanyTrip = () => {
     const [tripLenght, setTripLength] = useState(0);
 
     const dispatch = useDispatch();
-
+    const price = (price) =>{ const  newPrice = price.toLocaleString("it-IT", {
+        style: "currency",
+        currency: "VND",
+      });
+      return newPrice
+      }
     const getVehicles = async () => {
         try {
             const response = await companyApi.getTripByCompanyId(user.companyId);
@@ -88,14 +93,14 @@ const CompanyTrip = () => {
             ellipsis: true,
         },
         {
-            title: 'employee Name',
+            title: 'Employee Name',
             dataIndex: 'employeeName',
             key: 'employeeName',
             filteredValue: [searchedText],
             onFilter: (value, record) => record.employeeName.includes(value),
 
         },        {
-            title: 'status',
+            title: 'Status',
             dataIndex: 'status',
             key: 'status',
             filters: [
@@ -122,17 +127,18 @@ const CompanyTrip = () => {
             ellipsis: true,
 
         },        {
-            title: 'description',
-            dataIndex: 'description',
-            key: 'description',
+            title: 'Pay Later',
+            dataIndex: 'allowPaylater',
+            key: 'allowPaylater',
+            render:(_, record) => <> {record.allowPaylater ? "Yes" : "No"}</>
         },       {
-            title: 'time Departure',
+            title: 'Time Departure',
             dataIndex: 'timeDeparture',
             key: 'timeDeparture',
             render: ((date) => tranfer(date)),
 
         },       {
-            title: 'time Arrival',
+            title: 'Time Arrival',
             dataIndex: 'timeArrival',
             key: 'timeArrival',
             render: ((date) => tranfer(date)),
@@ -145,11 +151,11 @@ const CompanyTrip = () => {
 
         },
         {
-            title: 'arrival',
+            title: 'Arrival',
             dataIndex: `arrival`,
             key: 'arrival',
         },{
-            title: 'departure',
+            title: 'Departure',
             dataIndex: `departure`,
             key: 'departure',
         },
@@ -345,7 +351,30 @@ const tranfer=(time)=>{
                 Add Trip
             </button>
         </Space>
-        <Table columns={columns} dataSource={trips}  onChange={handleChange}/>;
+        <Table columns={columns} dataSource={trips}  onChange={handleChange}
+         expandable={{
+            expandedRowRender: (record) => (
+                <Descriptions title="Info" layout="vertical" bordered>
+                <Descriptions.Item label="Vehicle license">{record.vehicle.licensePlates}</Descriptions.Item>
+                <Descriptions.Item label="Vehicle Type">{record.vehicle.licensePlates}</Descriptions.Item>
+                <Descriptions.Item label="Allow Pay Later">{record.allowPaylater ? "Yes" : "No"}</Descriptions.Item>
+                <Descriptions.Item label="Allow edit before" span={2}>
+                  {record.timeReturn}
+                </Descriptions.Item>
+                <Descriptions.Item label="Status" span={3}>
+                  <Badge status="processing" text={record.status} />
+                </Descriptions.Item>
+                <Descriptions.Item label="Price">{price(record.price)}</Descriptions.Item>
+             
+                <Descriptions.Item label="Descriptions">
+                  {record.description}
+                </Descriptions.Item>
+              </Descriptions>
+            ),
+            rowExpandable: (record) => record.name !== 'Not Expandable',
+          }}
+        
+        />;
         {isModalOpen && <TripForm
             isModalOpen={isModalOpen}
             handleOk={handleOk}
