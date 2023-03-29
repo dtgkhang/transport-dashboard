@@ -352,6 +352,8 @@ const tranfer=(time)=>{
             </button>
         </Space>
         <Table columns={columns} dataSource={trips}  onChange={handleChange}
+                  rowKey="tripId"
+
          expandable={{
             expandedRowRender: (record) => (
                 <Descriptions title="Info" layout="vertical" bordered>

@@ -264,7 +264,7 @@ function CompanyVoucher() {
                 <Input />
               </Form.Item>
               <Form.Item
-                label="quantity"
+                label="Quantity"
                 name="quantity"
                 className="col-lg-6 responsive-column"
                 rules={[
@@ -277,7 +277,7 @@ function CompanyVoucher() {
                 <InputNumber />
               </Form.Item>
               <Form.Item
-                label="discountValue"
+                label="Discount Value(%)"
                 name="discountValue"
                 className="col-lg-6 responsive-column"
                 rules={[
@@ -290,7 +290,7 @@ function CompanyVoucher() {
                 <InputNumber />
               </Form.Item>
               <Form.Item
-                label="startTime"
+                label="Start Time"
                 name="startTime"
                 className="col-lg-6 responsive-column"
                 rules={[
@@ -303,7 +303,7 @@ function CompanyVoucher() {
                 <DatePicker format="DD-MM-YYYY HH:mm" showTime />
               </Form.Item>
               <Form.Item
-                label="expiredTime"
+                label="Expired Time"
                 name="expiredTime"
                 className="col-lg-6 responsive-column"
                 rules={[

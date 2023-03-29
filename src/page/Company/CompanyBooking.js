@@ -703,13 +703,16 @@ const columns = [
     render: (_, record) => (
       <div className="">
         <div className="m-1">
-        <Popconfirm
+      {
+        record.status ==="PAYLATER" ?  <Popconfirm
         title="Sure to change?"
         className="btn btn-primary text-white"
         onConfirm={() => handleConfirm(record)}
       >
         <a>Confirm</a> 
-      </Popconfirm>
+      </Popconfirm>: ""
+      }
+       
 
         </div>
       <div className="m-1">
@@ -723,13 +726,14 @@ const columns = [
 
       </div>
       <div className="m-1">
-        <Popconfirm
+        {record.status === "REJECTED" ? "" :   <Popconfirm
         title="Sure to cancel?"
         className="btn btn-danger text-white"
         onConfirm={() => cancelBooking(record)}
       >
         <a>Cancel</a> 
-      </Popconfirm>
+      </Popconfirm>}
+      
 
         </div>
  
@@ -870,10 +874,15 @@ useEffect(() => {
 
             </Space>
             <Table columns={columns} dataSource={vehicles} onChange={handleChange} 
+                      rowKey="id"
+
             expandable={{
               expandedRowRender: (record) => (
                   <Descriptions title="Info" layout="vertical" bordered>
-                  <Descriptions.Item label="Vehicle license">{record.trip.vehicle.licensePlates}</Descriptions.Item>
+                           <Descriptions.Item label="Time Departure">tranfer({record.trip.timeDeparture})</Descriptions.Item>
+                  <Descriptions.Item label="Time Arrival">tranfer({record.trip.timeArrival})</Descriptions.Item>
+                  <Descriptions.Item label="Price / seat">{price(record.trip.price)}</Descriptions.Item>
+                  <Descriptions.Item label="cus">{record.trip.vehicle.licensePlates}</Descriptions.Item>
                   <Descriptions.Item label="Vehicle Type">{record.trip.vehicle.licensePlates}</Descriptions.Item>
                   <Descriptions.Item label="Allow Pay Later">{record.trip.allowPaylater ? "Yes" : "No"}</Descriptions.Item>
                   <Descriptions.Item label="Allow edit before" span={2}>
@@ -884,9 +893,7 @@ useEffect(() => {
                   </Descriptions.Item>
                   {/* <Descriptions.Item label="Price">{price(record.price)}</Descriptions.Item> */}
                
-                  <Descriptions.Item label="Descriptions">
-                    {record.description}
-                  </Descriptions.Item>
+    
                 </Descriptions>
               ),
               rowExpandable: (record) => record.name !== 'Not Expandable',
