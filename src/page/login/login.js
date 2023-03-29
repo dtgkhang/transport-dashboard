@@ -22,7 +22,7 @@ function Login() {
             console.log(values)
             dispatch(HideLoading())
 
-            if(response.data){
+            if(response.data.data.role==="COMPANY" || response.data.data.role==="ADMIN"){
                 message.success(response.data.message)
                 localStorage.setItem("token",response.data.data.token)
                 localStorage.setItem("userID",JSON.stringify(response.data.data.id))

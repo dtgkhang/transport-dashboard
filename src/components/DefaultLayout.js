@@ -16,16 +16,17 @@ function getItem(label, key, icon, children) {
 }
 
 const CompanyItems = [
-    // getItem('Dashboard', '/company', <PieChartOutlined />),
+    getItem('Dashboard', '/company/dashboard', <PieChartOutlined />),
     getItem('Vehicle', '/company/vehicle', <DesktopOutlined />),
     getItem('Trip', '/company/trip', <UserOutlined />),
     getItem('Booking', '/company/booking', <UserOutlined />),
     getItem('Voucher', '/company/voucher', <DesktopOutlined />),
+
     getItem("Log Out",'/LogOut',<PoweroffOutlined/>)
 
 ];
 const AdminItems = [
-    // getItem('Dashboard', '/admin', <PieChartOutlined />),
+    getItem('Dashboard', '/admin/dashboard', <PieChartOutlined />),
     // getItem('User', '/admin/user', <DesktopOutlined />),
     getItem('Company', '/admin/company', <DesktopOutlined />),
     getItem('Voucher', '/admin/voucher', <DesktopOutlined />),

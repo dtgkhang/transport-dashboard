@@ -44,8 +44,13 @@ const companyApi ={
     },cancelBooking(id){
         const url = `/api/booking/CancelBooking/${id}`
         return axiosClient.get(url);
-    },
-
+    },getBooking7days(id){
+        const url = `/api/dashboard/last7days/${id}`
+        return axiosClient.get(url);
+    },getRoutes(){
+        const url = `/api/route/propose`
+        return axiosClient.get(url);
+    }
 };
 
 export default companyApi;

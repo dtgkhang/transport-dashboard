@@ -17,6 +17,7 @@ import LogOut from "./components/LogOut";
 import AdminUser from './page/Admin/AdminUser';
 import AdminVouncher from './page/Admin/AdminVouncher';
 import CompanyVoucher from './page/Company/CompanyVoucher';
+import AdminDashboard from './page/Admin/AdminDashboard';
 
 function App() {
     const {loading} =useSelector(state => state.alerts)
@@ -34,11 +35,13 @@ function App() {
             <Route path="/company/vehicle" element={<ProtectedRoute><CompanyVehicle/></ProtectedRoute>}/>
             <Route path="/company/booking" element={<ProtectedRoute><CompanyBooking/></ProtectedRoute>}/>
             <Route path="/company/voucher" element={<ProtectedRoute><CompanyVoucher/></ProtectedRoute>}/>
+            <Route path="/company/dashboard" element={<ProtectedRoute><CompanyDashboard/></ProtectedRoute>}/>
 
             <Route path="/admin" element={<ProtectedRoute><AdminCompany/></ProtectedRoute>}/>
             <Route path="/admin/voucher" element={<ProtectedRoute><AdminVouncher/></ProtectedRoute>}/>
             <Route path="/admin/company" element={<ProtectedRoute><AdminCompany/></ProtectedRoute>}/>
             <Route path="/admin/user" element={<ProtectedRoute><AdminUser/></ProtectedRoute>}/>
+            <Route path="/admin/dashboard" element={<ProtectedRoute><AdminDashboard/></ProtectedRoute>}/>
 
         </Routes>
       </BrowserRouter>

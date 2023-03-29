@@ -27,6 +27,12 @@ const adminApi ={
     },updateVoucher(data){
         const url = `/api/voucher/update`
         return axiosClient.put(url,data)
+    },getAllBooking(){
+        const url = `/api/booking`
+        return axiosClient.get(url);
+    },getBooking7days(){
+        const url = `/api/dashboard/last7days`
+        return axiosClient.get(url);
     }
     
 };

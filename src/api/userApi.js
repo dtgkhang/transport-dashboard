@@ -21,7 +21,9 @@ const userApi = {
         const url = `/api/accounts/change/${id}`;
         return axiosClient.patch(url);
     },getFeedbackUser(id){
-        
+        const url = `/api/feedbacks/all/company/${id}`;
+        return axiosClient.get(url);
+
     }
 
 };

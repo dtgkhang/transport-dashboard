@@ -1,4 +1,4 @@
-import { Popconfirm,message, Table,Space,Button,Input,Dropdown } from "antd";
+import { Popconfirm,message, Table,Space,Button,Input,Dropdown, Descriptions, Badge } from "antd";
 import React, {  useRef, useEffect, useState } from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {HideLoading, ShowLoading} from "../../redux/alertsSlice";
@@ -85,12 +85,7 @@ const AdminCompany = () => {
             filteredValue: [searchedText],
             onFilter: (value, record) => record.name.includes(value),
 
-        },       {
-            title: 'description',
-            dataIndex: 'description',
-            key: 'description',
-            width: '20%',
-        },    {
+        },         {
             title: 'rating',
             dataIndex: 'rating',
             key: 'rating',
@@ -158,7 +153,32 @@ const AdminCompany = () => {
             </button>
             {/*{comapnies.account.status}*/}
         </Space>
-        <Table columns={columns} dataSource={comapnies}  onChange={handleChange}/>;
+        <Table columns={columns} dataSource={comapnies}  onChange={handleChange}
+             rowKey="companyId"
+
+             expandable={{
+                expandedRowRender: (record) => (
+                    <Descriptions title="Info" layout="vertical" bordered>
+                    <Descriptions.Item label="Date">{record.account.dataOfBirth}</Descriptions.Item>
+                    <Descriptions.Item label="username">{record.account.username}</Descriptions.Item>
+                    <Descriptions.Item label="firstname">{record.account.firstname}</Descriptions.Item>
+                    <Descriptions.Item label="Allow edit before" span={2}>
+                      {record.timeReturn}
+                    </Descriptions.Item>
+                    <Descriptions.Item label="Status" span={3}>
+                      <Badge status="processing" text={record.status} />
+                    </Descriptions.Item>
+                 
+                    <Descriptions.Item label="Descriptions">
+                      {record.description}
+                    </Descriptions.Item>
+                  </Descriptions>
+                ),
+                rowExpandable: (record) => record.name !== 'Not Expandable',
+              }}
+            
+        
+        />;
         {isModalOpen && <CompanyForm
             isModalOpen={isModalOpen}
             handleOk={handleOk}
