@@ -34,7 +34,7 @@ const getBooked = async () => {
       message.error(response.data.message);
     }
   } catch (err) {
-    message.error(err.message);
+    // message.error(err.message);
   }
 };
 const price = (price) =>{ const  newPrice = price.toLocaleString("it-IT", {
