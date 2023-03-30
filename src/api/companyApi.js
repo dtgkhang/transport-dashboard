@@ -36,7 +36,7 @@ const companyApi ={
         const url = `/api/booking/cash/${id}`
         return axiosClient.get(url);
     },confirmRefund(id){
-        const url = `/api/booking/returnTicket/${id}`
+        const url = `/api/booking/RefundedBooking/${id}`
         return axiosClient.get(url);
     },updateTrip(data){
         const url = `/api/trip/update`

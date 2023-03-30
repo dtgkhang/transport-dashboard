@@ -166,15 +166,15 @@ dispatch(ShowLoading())
                          format="DD-MM-YYYY HH:mm"
                          showTime/>
                 </Form.Item>
-                <Form.Item label="Allow Pay later ?" name="companyId"  initialValues={user.companyId}   rules={[
+                <Form.Item label="Allow Pay later ?" name="allowPayLater"  rules={[
                         {
                           required: true,
                           message: 'Please select!',
                         },
                       ]}>
                     <Radio.Group>
-                        <Radio value={true}> Yes </Radio>
-                        <Radio value={false}> No </Radio>
+                        <Radio value={1}> Yes </Radio>
+                        <Radio value={0}> No </Radio>
 
                     </Radio.Group>
                 </Form.Item>
