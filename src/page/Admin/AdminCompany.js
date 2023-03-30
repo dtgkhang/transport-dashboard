@@ -162,9 +162,7 @@ const AdminCompany = () => {
                     <Descriptions.Item label="Date">{record.account.dataOfBirth}</Descriptions.Item>
                     <Descriptions.Item label="username">{record.account.username}</Descriptions.Item>
                     <Descriptions.Item label="firstname">{record.account.firstname}</Descriptions.Item>
-                    <Descriptions.Item label="Allow edit before" span={2}>
-                      {record.timeReturn}
-                    </Descriptions.Item>
+                   
                     <Descriptions.Item label="Status" span={3}>
                       <Badge status="processing" text={record.status} />
                     </Descriptions.Item>
